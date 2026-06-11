@@ -1,0 +1,21 @@
+#secrets
+.env
+*.key
+*.pem
+*.token
+*.secret
+
+#ssh / gpg /credentials
+.ssh/
+.gnupg/
+.netrc
+
+#cache
+.cache
+__pycache__/
+*.log
+
+#temporary files
+*.back
+*.tmp
+*~
