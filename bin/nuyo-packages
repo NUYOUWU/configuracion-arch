@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e
+
+REPO="$HOME/nuyo/arch"
+
+echo "NUYO PACKAGES"
+echo "-------------------"
+
+mkdir -p "$REPO/packages"
+mkdir -p "$REPO/system"
+
+echo "Saving pacman explicit packages..."
+pacman -Qqe > "$REPO/packages/pacman-explicit.txt"
+
+echo "Saving AUR/foreign packages..."
+pacman Qqm > "$REPO/packages/aur.txt" 2>/dev/null || true
+
+echo "saving enable services..."
+systemctl list-unit-files --state=enale > "$REPO/system/enabled-service.txt"
+echo "Saving kernel info..."
+uname -a > "$REPO/system/kernel.txt"
+
+echo "Package/system info saved in:"
+echo "$REPO"
+
+
