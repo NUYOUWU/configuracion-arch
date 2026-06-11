@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+
+clear
+echo "Nuyo Status"
+echo "-------------"
+echo "User: $USER"
+echo "Host: $(hostname)"
+echo "Kernel: $(uname -r)"
+echo "Uptime: $(uptime -p)"
+echo "Date: $(date)"
+echo
+echo "Disk:"
+df -h / | tail -1
+echo
+echo "Memory:"
+free -h | awk '/Mem: {print $3 "used / " $2}'
+echo
+echo "Batery:"
+cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -1 | sed 's/$/%/' || echo "No batery info"
+
+
+
+
