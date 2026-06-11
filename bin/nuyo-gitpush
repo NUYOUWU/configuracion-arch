@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -e
+
+REPO="$HOME/nuyo-arch"
+
+echo "NUYO GIT PUSH"
+echo "----------------"
+
+cd "$REPO"
+
+echo "Syncing scripts..."
+mkdir -p bin config
+
+cp ~/.local/bin/nuyo-* "$REPO/bin/"
+
+echo "Syncing configs..."
+cp -r ~/.config/hypr "$REPO/config/" 2>/dev/null || true
+cp -r ~/.config/waybar "$REPO/config/" 2>/dev/null || true
+cp -r ~/.config/wofi "$REPO/config/" 2>/dev/null || true
+
+
+echo
+echo "Git status:"
+git status --short
+
+echo
+read -p "Commit message: " msg
+
+if [ -z "$msg" ]; then
+	msg="Update Nuyo arch config"
+fi
+
+git add .
+git commit -m "$msg" || echo "no changes to comit."
+git push
+
+echo
+echo "backup pushed to git"
+
