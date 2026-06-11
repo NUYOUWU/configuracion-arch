@@ -23,7 +23,7 @@ restaurar configuraciones
 mkdir -p ~/.config
 cp -r ~/nuyo-arch/config/hypr ~/.config/
 cp -r ~/nuyo-arch/config/waybar ~/.config/
-cp -r ~/nuyo-arch/config/wofi ~/.config/
+[ -d ~/nuyo-arch/config/wofi ] && cp -r ~/nuyo-arch/config/wofi ~/.config/
 ```
 instalar paquetes guardados
 
