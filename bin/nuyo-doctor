@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+echo "NUYO DOCTOR"
+echo "-----------------"
+
+echo
+echo "1. Internet:"
+ping -c 1 archlinux.org >/dev/null 2>&1 && echo "OK internet" || echo "SIN INTERNET"
+
+echo
+echo "2. Disk:"
+df -h /
+
+echo
+echo "3.memory"
+free -h
+
+echo
+echo "4. BATERY"
+cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -1 | sed 's/$/%/' || echo "No batery info"
+
+echo
+echo "5. Firewall:"
+sudo ufw status | head -5
+
+echo
+echo "6. Hyprland"
+pgrep hyprland >/dev/null && echo "hyprland runing" || echo "Hyprland not runing"
+
+echo
+echo "7. waybar:"
+pgrep waybar >/dev/null && echo "waybar runing" || echo "waybar not runing"
+
+echo
+echo "8. Clipboard:"
+pgrep wl-paste >/dev/null && echo "Clipboard watcher runing" || echo "clipboard watcher not runing"
+
+echo
+echo "Doctor Check finished."
+
+
