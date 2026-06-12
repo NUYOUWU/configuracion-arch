@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+BIN="$HOME/.local/bin"
+
+choice=$(printf "Status\nDoctor\nSecurity\nUpdate\nClean\nBackup\nPackages\nGit Push\nExit" | rofi -dmenu -p "Nuyo Control")
+
+case "$choice" in
+    "Status")
+        xfce4-terminal --hold --command="$BIN/nuyo-status"
+        ;;
+    "Doctor")
+        xfce4-terminal --hold --command="$BIN/nuyo-doctor"
+        ;;
+    "Security")
+        xfce4-terminal --hold --command="$BIN/nuyo-security"
+        ;;
+    "Update")
+        xfce4-terminal --hold --command="$BIN/nuyo-update"
+        ;;
+    "Clean")
+        xfce4-terminal --hold --command="$BIN/nuyo-clean"
+        ;;
+    "Backup")
+        xfce4-terminal --hold --command="$BIN/nuyo-backup"
+        ;;
+    "Packages")
+        xfce4-terminal --hold --command="$BIN/nuyo-packages"
+        ;;
+    "Git Push")
+        xfce4-terminal --hold --command="$BIN/nuyo-gitpush"
+        ;;
+    "Exit")
+        exit 0
+        ;;
+esac
