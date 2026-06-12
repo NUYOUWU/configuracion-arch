@@ -35,7 +35,7 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal    = "kitty"
+local terminal    = "xfce4-terminal"
 local fileManager = "dolphin"
 local menu        = "rofi -show drun"
 
@@ -270,7 +270,8 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
-hl.bind(mainMod .. "+T", hl.dsp.exec_cmd("~/.local/bin/screenshot-area"))
+hl.bind(mainMod .. " + T ", hl.dsp.exec_cmd("~/.local/bin/screenshot-area"))
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("cliphist list | wofi --dmenu | cliphist decode | wl-copy"))
 
 
 -- Move focus with mainMod + arrow keys
@@ -372,4 +373,6 @@ hl.on("hyprland.start",function()
   hl.exec_cmd("mako >/dev/null 2>&1")
   hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1 >/dev/null 2>&1")
   hl.exec_cmd("swaybg -i /usr/share/hypr/wall2.png -m fill >/dev/null 2>&1")
+  hl.exec_cmd("wl-paste --type text --watch cliphist store >/dev/null 2>&1")
+  hl.exec_cmd("wl-paste --type image --watch cliphist store >/dev/null 2>&1")
 end)
